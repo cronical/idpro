@@ -1,0 +1,16 @@
+
+ pandoc --from=docx --to=html --extract-media=. -s -osimple.html simple.docx
+
+
+The extract-media pulls the graphic into a directory called media under the given directory.
+
+Handy since that's where latex looks for it.
+
+This technique pulls in the graphic with high fidelity
+
+
+The default template for latex can be saved and edited
+
+mkdir ~/.pandoc
+pandoc -D latex > ~/.pandoc/default.latex
+

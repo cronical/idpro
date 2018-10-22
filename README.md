@@ -27,7 +27,7 @@ Under the root folder are folders for each of the chapters.  Under the chapter f
 
 The chapter and section folders contain source documents (currently `docx`) and resulting `tex` documents. 
 
-A subfolder named `media` will exist if any media are extracted from the source document.
+A subfolder named `media` will exist if any media are extracted from the source document.  This folder will be created and populated by a script (see `walk.sh`)
 
 References to the `media` folder will exist in the `.tex` file.
 
