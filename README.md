@@ -32,6 +32,19 @@ A subfolder named `media` will exist if any media are extracted from the source 
 References to the `media` folder will exist in the `.tex` file.
 
 In addition to the content folders there are two utility folders for notes and scripts.
+### Order
+The nested set of folders provides the heirarchy of the document outline.  
+The order of the sections is provided by the file and folder names.
+The script sorts them alphabetically, which of course, is not what we typically want.
+By convention the files and folders are named with numeric prefixes so that they come in the desired order. For instance: 
+`05_authentication`
+`10_accounts`
+
+forces authentication to come before accounts. Note: for now, anyway, use underscores not spaces.
+
+### Processing
+
+The script only processes folders that begin with a digit.
 
 
 
