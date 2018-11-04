@@ -71,10 +71,10 @@ walk() {
             # adjust heading levels
             lowest=$(awk -f scripts/sections.awk "${filename}.tex")
             awk -f scripts/section_map.awk -v low=$lowest -v base=$indent ${filename}.tex > tmp && cp tmp ${filename}.tex
-
+            rm tmp
             # improve graphics placement
             awk -f scripts/graphics_patch.awk ${filename}.tex > tmp && cp tmp ${filename}.tex
-
+            rm tmp
             # include in main file
             subimport=$(printf ${format} "${escapedfn}")
             echo ${subimport} >> ${texmain}
