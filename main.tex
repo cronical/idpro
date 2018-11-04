@@ -8,9 +8,9 @@
 \usepackage{hyperref}
 \usepackage{import}                                   % allow for relative paths later
 %SetFonts
-
-%SetFonts
-
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{makeidx}
 
 \title{IDPro Body of Knowledge - Demo}
 \author{Principal Editor: TBD}
@@ -25,22 +25,16 @@
 \pagenumbering{roman}
 \tableofcontents
 \newpage
-\twocolumn
+\onecolumn
 \pagenumbering{arabic}
+% --- end of template ---
 
-\section{Authentication}
+\input{"./05_authentication/00_authn".tex}
+\input{"./05_authentication/01_passwords/10_Passwords".tex}
+\input{"./05_authentication/01_passwords/30_entropy/Entropy".tex}
+\input{"./05_authentication/20_onetime/10_onetime".tex}
+\input{"./05_authentication/20_onetime/20_pad/Pad".tex}
+\input{"./10_accounts/00_accounts".tex}
+\input{"./10_accounts/10_non_personal_accounts/non_personal".tex}
+\end{document}
 
-
-
-%subimport allows the included files to reference it's own directory
-
-\subimport*{authentication/passwords/}{passwords.tex}   
-
-\subimport*{authentication/passwords/entropy/}{entropy.tex}         
-
-\subimport*{authentication/onetime/}{onetime.tex}     
-\newpage    
-\subimport*{authentication/onetime/pad/}{pad.tex}         
-
-
-\end{document}  
