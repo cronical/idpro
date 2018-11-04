@@ -24,4 +24,6 @@ startclean(){
 	echo "$str"
 }
 
-stringcontain(){ [ -z "${2##*$1*}" ] && [ -z "$1" -o -n "$2" ]; }
+stringcontain(){
+  [ -z "${2##*$1*}" ] && [ -z "$1" -o -n "$2" ];
+}

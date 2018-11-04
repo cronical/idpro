@@ -17,9 +17,6 @@ BEGIN{
   map[ "4" ] = "paragraph"
   map[ "5" ] = "subparagraph"
 
-  for (i in map){
-    print i, map[i]
-  }
 }
 
 # get the original level
@@ -33,7 +30,7 @@ BEGIN{
 
 # the following will match again, all of the above
 /.*/ {
-  mtch = match( $0 , /\\(sub)*section|\\chapter/ )
+  mtch = match( $0 , /\\(sub)*section|\\chapter|\\(sub)*paragraph/ )
   if (mtch == 0 ) print $0
   else {
     lev = orig + base - low
