@@ -14,3 +14,13 @@ The default template for latex can be saved and edited
 mkdir ~/.pandoc
 pandoc -D latex > ~/.pandoc/default.latex
 
+
+convert markdown to docx
+
+pandoc -f markdown -t docx non-personal-accounts.md -o np.docx
+
+
+convert markdown to latex
+
+pandoc -f markdown -t latex non-personal-accounts.md -o np.tex
+
