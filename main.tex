@@ -1,3 +1,4 @@
+% !TEX TS-program = XeLaTeX
 \documentclass[11pt, oneside]{book}   	% use "amsart" instead of "article" for AMSLaTeX format
 \usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
 \geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
@@ -21,7 +22,13 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{import}                                   % allow for relative paths later
+
 %SetFonts
+\usepackage{fontspec}
+\setmainfont{Charter}
+\setsansfont[Scale=MatchLowercase]{Lucida Grande}
+\setmonofont[Scale=MatchLowercase]{Monaco}
+ 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{makeidx}
