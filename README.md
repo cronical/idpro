@@ -46,6 +46,27 @@ forces authentication to come before accounts. Note: for now, anyway, use unders
 
 The script only processes folders that begin with a digit.
 
+## Helper files
+In the case of graphics and tables, some of the information needed is not available in the source document or it is not consistently exported.  Captions are the primary example.  Information about column widths is not exported by Pandoc. The helper files must be created by the operator as needed.
+
+### Graphics helper
+The helper file has the same name as the graphics file but with the extension `caption`.
+For instance in the media folder you might see
+   `image1.caption
+   image1.jpeg`
+
+The contents of the caption file is the text for the caption for that image.  If Pandoc does export the caption, to prevent it showing up in the wrong place, it is removed during processing.
+
+### Table helper
+
+The table needs additional assistance and the table is not an external file.  The tables in a single document are considered numbered 1...n. And for each table a file is created called `tableN.info` where N is the sequence number.  There are two rows in the table, one for the caption and one for the column specificiation. For instance:
+
+```
+caption=Components of Authentication
+column_spec=l p{4in}
+```
+
+The column spec in this case says the 1st column is left aligned and the 2nd is paragraph wrapped at 4 inches.
 
 
 

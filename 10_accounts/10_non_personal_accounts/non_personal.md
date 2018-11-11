@@ -4,6 +4,7 @@
 
 Customer often ask me for best practices regarding management of non-personal or highly privileged accounts in the process of implementing an Identity and Access Management (IAM) solution. This is an interesting question, because in an IAM project, we try to manage all kinds of accounts, but this type of account is different from accounts that are owned by end users. This type of accounts can’t directly be related to a uniquely identifiable person, nor are they the result of the 'joiner – mover - leaver' HR processes in an organization. So, how do you manage the existence of such an account?
 
+
 **Types of non personal accounts**
 
 There are Non Personal Accounts (NPA’s) and Non-personal System Accounts: (NPSA’s). We can identify:

@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 #This script walks through directory tree to convert input files to tex files
 # and creates a driver tex file which calls the converted files
 # finds input files by looking for markdown and MS Word files by extension (.md, .docx)
@@ -10,7 +10,7 @@
 #Order is determined by the alphabetic sorting of sub-folders. Only folders starting with digits are included.
 #Recommended usage is two digits then an underscore then the natural folder namea
 #
-#Heading levels are (to be) handled by modifying the naive translation of the source to reflect the folder context
+#Heading levels are handled by modifying the naive translation of the source to reflect the folder context
 #
 texmain="main.tex"
 set +B # avoid brace expansion for these variables
@@ -24,7 +24,7 @@ regex="^[0-9]+" # to find leading digits on directory names
 source $(dirname "$0")"/functions.sh" # functions used: startclean, stringcontain
 #
 #define the main function, which walks a directory tree
-# this is recursive.  parameter 1 is required and it s a folder (without the trailing space)
+# this is recursive.  parameter 1 is required and it is a folder (without the trailing slash)
 # parameter 2 is the indent level, which defaults to 0
 walk() {
   local indent="${2:-0}"
@@ -70,10 +70,12 @@ walk() {
 
             # adjust heading levels
             lowest=$(awk -f scripts/sections.awk "${filename}.tex")
-            awk -f scripts/section_map.awk -v low=$lowest -v base=$indent ${filename}.tex > tmp && cp tmp ${filename}.tex
+
+            #subtract 0 to have first level be sections, 1 to be chapters (which requires the document class to be book
+            awk -f scripts/section_map.awk -v low=$lowest -v base=$(( $indent - 1 )) ${filename}.tex > tmp && cp tmp ${filename}.tex
             rm tmp
             # improve graphics placement
-            awk -f scripts/graphics_patch.awk ${filename}.tex > tmp && cp tmp ${filename}.tex
+            awk -f scripts/graphics_patch.awk -v path=$path ${filename}.tex > tmp && cp tmp ${filename}.tex
             rm tmp
             # include in main file
             subimport=$(printf ${format} "${escapedfn}")
