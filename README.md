@@ -66,11 +66,16 @@ By convention the files and folders are named with numeric prefixes so that they
 
 forces authentication to come before accounts. Note: for now,  use underscores not spaces in file names.
 
-### Processing
+## Processing
 
 The script called "walk.sh" traverses the directory and selects only processes folders that begin with a digit. The script walks through the directory tree to convert input files to tex files using Pandoc. It creates a driver tex file which includes the converted files. It finds input files by looking for markdown and MS Word files by extension (.md, .docx). If both file types exist with the same name the last one (.md) wins.  
 The script also normalizes the levels of the headings so that they align to the levels in the folder structure.
 The script also adjusts the resulting text to better handle graphics placement.
+
+The basic operating scenario is
+1. Place files in folders and set names according to order desired.
+2. Run the walk script to create the operating input to the "tex" formatter
+3. Run the "tex" formatter to create the output.
 
 ## Helper files
 In the case of graphics and tables, some of the information needed is not available in the source document or it is not consistently exported.  Captions are the primary example.  Information about column widths is not exported by Pandoc. The helper files must be created by the operator as needed.
@@ -81,18 +86,18 @@ For instance in the media folder you might see
    `image1.caption
    image1.jpeg`
 
-The contents of the caption file is the text for the caption for that image.  If Pandoc does export the caption, to prevent it showing up in the wrong place, it is removed during processing.
+The contents of the caption file is the text for the caption for that image.  If Pandoc does export the caption, to prevent it showing up in the wrong place, it is removed during processing.  The graphics "help" is automatic.
 
 ### Table helper
 
-The table needs additional assistance and the table is not an external file.  The tables in a single document are considered numbered 1...n. And for each table a file is created called `tableN.info` where N is the sequence number.  There are two rows in the table, one for the caption and one for the column specificiation. For instance:
+The table needs additional assistance and the table is not an external file.  The tables in a single document are considered numbered 1...n. And for each table a file is created called `tableN.info` where N is the sequence number.  There are two rows in the .info file, one for the caption and one for the column specificiation. For instance:
 
 ```
 caption=Components of Authentication
 column_spec=l p{4in}
 ```
 
-The column spec in this case says the 1st column is left aligned and the 2nd is paragraph wrapped at 4 inches.
+The column spec in this case says the 1st column is left aligned and the 2nd is paragraph wrapped at 4 inches.  The table help is handled by the operator (manual).
 
 
 
