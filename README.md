@@ -21,11 +21,35 @@ Demo to experiment with IDPro Body of Knowledge techniques
 
 ## Structure
 
-The root contains the files that control the composition and any supporting files.  These are `main.tex` and (eventually) `main.docx`. 
+The root contains the files that control the composition, the finished output and some supporting files.  The primary input file is `main-template.tex`.  This file is the basis of the file `main.tex`, which is generated to include a series of files which occur lower in the folder tree. 
 
-Under the root folder are folders for each of the chapters.  Under the chapter folders are folders for the sections.  
 
-The chapter and section folders contain source documents (currently `docx`) and resulting `tex` documents. 
+
+`├── 05_authentication
+│   ├── 00_authn.docx
+│   ├── 01_passwords
+│   │   ├── 10_Passwords.docx
+│   │   ├── 30_entropy
+│   │   │   ├── Entropy.docx
+│   │   │   └── media
+│   │   └── media
+│   └── 20_onetime
+│       ├── 10_onetime.docx
+│       └── 20_pad
+│           ├── Pad.docx
+│           └── media
+├── 10_accounts
+│   ├── 00_accounts.docx
+│   └── 10_non_personal_accounts
+│       └── non_personal.md`
+
+
+
+Under the root folder are folders for each of the chapters.  Under the chapter folders are folders for the sections.  The chapter and section folders contain source documents which are either docx or markdown.
+
+The folders and the source files are prefixed by numbers to aid in ordering (see below).  Ignoring those numbers, the source files here are authn.docx, Passwords.docx, Entropy.docx, onetime.docx, Pad.docx, accounts.docx and non_personal.md.
+
+Once the "walk" script is run the folders also contain the resulting `tex` documents. 
 
 A subfolder named `media` will exist if any media are extracted from the source document.  This folder will be created and populated by a script (see `walk.sh`)
 
@@ -40,11 +64,13 @@ By convention the files and folders are named with numeric prefixes so that they
 `05_authentication`
 `10_accounts`
 
-forces authentication to come before accounts. Note: for now, anyway, use underscores not spaces.
+forces authentication to come before accounts. Note: for now,  use underscores not spaces in file names.
 
 ### Processing
 
-The script only processes folders that begin with a digit.
+The script called "walk.sh" traverses the directory and selects only processes folders that begin with a digit. The script walks through the directory tree to convert input files to tex files using Pandoc. It creates a driver tex file which includes the converted files. It finds input files by looking for markdown and MS Word files by extension (.md, .docx). If both file types exist with the same name the last one (.md) wins.  
+The script also normalizes the levels of the headings so that they align to the levels in the folder structure.
+The script also adjusts the resulting text to better handle graphics placement.
 
 ## Helper files
 In the case of graphics and tables, some of the information needed is not available in the source document or it is not consistently exported.  Captions are the primary example.  Information about column widths is not exported by Pandoc. The helper files must be created by the operator as needed.
